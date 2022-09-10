@@ -120,7 +120,7 @@ public class Task2_1 {
                 .sorted(Comparator.comparing(Person::getName))
                 .distinct()
                 .toList();
-        
+
         Map<String, Long> resultMap = distinctList.stream()
                 .collect(Collectors.groupingBy(Person::getName, Collectors.counting()));
 
