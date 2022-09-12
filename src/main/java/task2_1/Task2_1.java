@@ -116,20 +116,14 @@ public class Task2_1 {
         System.out.println("**************************************************");
         System.out.println();
         System.out.println("Duplicate filtered, grouped by name, sorted by name and id:");
-        List<Person> distinctList = Arrays.stream(RAW_DATA)
+
+        Map<String, Long> resultMap = Arrays.stream(RAW_DATA)
                 .sorted(Comparator.comparing(Person::getName))
                 .distinct()
-                .toList();
-
-        Map<String, Long> resultMap = distinctList.stream()
                 .collect(Collectors.groupingBy(Person::getName, Collectors.counting()));
 
         Map<String, Long> sortedMap = new TreeMap<>(resultMap);
-
-        for (Map.Entry<String, Long> entry : sortedMap.entrySet()) {
-            System.out.println("Key:" + entry.getKey() + "\n" + "Value:" + entry.getValue());
-        }
-
+        sortedMap.forEach((s, aLong) -> System.out.println("Key: " + s + "\n" + "Value: " + aLong));
 
         /*
         Task1
